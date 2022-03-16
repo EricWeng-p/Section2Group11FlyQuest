@@ -1,18 +1,41 @@
-int minutes = 15 * (rand() % 4);  //0-3*15 = 00, 15, 30, 45
-char time; //12:45, 00:00, 18:30
+//Assign relevant user and flight information, assign random variables for ticket
+struct TICKET TicketGenerator(USER u, FLIGHT f) {
+	struct TICKET t;
+	//!!integrate user and flight variables!!
+	strcpy(t.first_name, u.first_name);
+	strcpy(t.last_name, u.last_name);
+	strcpy(t.flight_destination, f.flight_destination);
+	strcpy(t.ticket_ID, getHex());
+	t.gate_number = (rand() % 12) + 1;
+	strcpy(t.flight_time, getTime());
+}
 
-if (hour == 0 && minutes == 0)
-time = ("00:00");
+char getHex() {
+	int h1, h2, h3;
+	char hex;
+	h1 = rand() % 255;
+	h2 = rand() % 255;
+	h3 = rand() % 255;
+	hex = ("%d%d%d", h1, h2, h3);
+}
 
-else if (hour == 0)
-time = ("00:%d", minutes);
+char getTime() {
+	int hour = rand() % 24; //00-23
+	int minutes = 15 * (rand() % 4);  //0-3*15 = 00, 15, 30, 45
+	char time; //12:45, 00:00, 18:30
 
-else if (time == 0)
-time = ("%d:00", hour);
-else
-time = ("%d:%d\n", hour, minutes);
+	if (hour == 0 && minutes == 0)
+		time = ("00:00");
 
-return time;
+	else if (hour == 0)
+		time = ("00:%d", minutes);
+
+	else if (time == 0)
+		time = ("%d:00", hour);
+	else
+		time = ("%d:%d\n", hour, minutes);
+
+	return time;
 }
 //Ticket Printer
 /*
