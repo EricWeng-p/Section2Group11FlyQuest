@@ -1,8 +1,9 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void main() {
+	welcome();
+	checkFor();
+	printOption();
 
-int main(void) {
-	//testing 3
-	printf("Hello World! \n");
-
-	return 0;
 }
