@@ -1,6 +1,8 @@
 #pragma once
 #define CARDNUMSIZE 9
 #include<stdbool.h>
+#include<stdio.h>
+#include<stdlib.h>
 
 typedef struct USER {
 	char* firstName;
@@ -14,12 +16,11 @@ typedef struct FLIGHT {
 	bool oneWay;
 }FLIGHT;
 
-int encryptionKey[CARDNUMSIZE] = { 14, 23, 44, 2, 4, 13, 41, 7, 11 };
-double* encryptCardNumber(double d);
-double decryptCardNumber(double* d);
+
+int* encryptCardNumber(double d);
+double decryptCardNumber(int* num);
 double setCardNumber(USER u, double d);
 double getCardNumber(USER u);
-
 
 char* setFirstName(USER u, char* name);
 char* setLastName(USER u, char* name);

@@ -1,22 +1,38 @@
 #include"dataProcessing.h"
 
+int encryptionKey[CARDNUMSIZE] = { 3, 2, 5, 3, 6, 5, 3, 5, 6};
 //cardNumber
-double* encryptCardNumber(double d) {
+int* encryptCardNumber(double d) {
 	//convert d into a string array
 	char* arr = malloc(10); //cardnumsize + 1
-	int numArr[CARDNUMSIZE];
+	snprintf(arr, 10, "%f", d);
+	int* numArr = malloc(CARDNUMSIZE);
 	for (int i = 0; i < CARDNUMSIZE; i++) {
-		numArr[i] = (atoi(arr[i] - '0'));
-		printf("%d-", numArr[i]); //test
+		numArr[i] = (arr[i] - '0');
+		printf("%d/", numArr[i]); //test
 	}
+	printf("\n"); //test
 	for (int i = 0; i < CARDNUMSIZE; i++) {
 		numArr[i] = numArr[i] << encryptionKey[i]; //bit shift each value left based on encryption key
-		printf("%d-", numArr[i]); //test
+		printf("%d/", numArr[i]); //test
 	}
-	return arr;
+	printf("\n"); //test
+	free(arr);
+	return numArr;
 }
-double decryptCardNumber(double* d) {
-
+double decryptCardNumber(int* num) {
+	int numArr[CARDNUMSIZE];
+	for (int i = 0; i < CARDNUMSIZE; i++) {
+		numArr[i] = *(num + i);
+		printf("%d/", numArr[i]); //test
+	}
+	printf("\n"); //test
+	for (int i = 0; i < CARDNUMSIZE; i++) {
+		numArr[i] = numArr[i] >> encryptionKey[i];
+		printf("%d/", numArr[i]); //test
+	}
+	printf("\n"); //test
+	return 2;
 }
 double setCardNumber(USER u, double d) {
 	return u.cardNumber = d;
