@@ -4,63 +4,30 @@
 
 # include <stdio.h>
 # include <string.h>
+#include"dataProcessing.h"
 
-void filewrite(char fname, char lname, double cardnumber, int cvv)
-{
-	FILE* filePointer;
-
-	filePointer = fopen("Test.txt", "w");
-	if (filePointer == NULL)
-	{
-		printf("Test.txt file failed to open.");
+void readUserFile(USER* u) {
+	//open file
+	FILE* fp = fopen("text.txt", "r");
+	int size = 1;
+	char ch; //buffer
+	while (!feof(fp)) {
+		ch = fgetc(fp);
+		if (ch == '\n') {
+			size++;
+		}
 	}
-	else
-	{
-
-		printf("The file is now opened.\n");
-
-
-		fprintf(filePointer, "%c \n", fname);
-		fprintf(filePointer, "%c \n", lname);
-		fprintf(filePointer, "%lf \n", cardnumber);
-		fprintf(filePointer, "%d \n", cvv);
+	size = size / 4;
+	//find size of file
+	printf("%d", size);
+	//malloc space
+	//structure array
+	USER* userArray = (USER)malloc(sizeof(USER) * size);
+	//read file line by line into userArray
 
 
-		fclose(filePointer);
-
-		printf("Data successfully written in file Test.txt\n");
-		printf("The file is now closed.");
-	}
-}
-
-void fileread(char fname, char lname, double cardnumber, int cvv)
-{
-
-	char firstname = { 0 };
-
-	FILE* filePointer;
-
-	filePointer = fopen("Test.txt", "r");
-
-	if (filePointer == NULL)
-	{
-		printf("Test.txt file failed to open.");
-	}
-	else
-	{
-		printf("The file is now opened.\n");
-
-		fscanf(filePointer, "%c %c %lf %d", &fname, &lname, &cardnumber, &cvv);
-		printf("%c \n", fname);
-		printf("%c \n", lname);
-		printf("%lf \n", cardnumber);
-		printf("%d \n", cvv);
-
-		fclose(filePointer);
-
-		printf("Data successfully read from file Test.txt\n");
-		printf("The file is now closed.");
-	}
+	//close file
+	fclose(fp);
 }
 
 
