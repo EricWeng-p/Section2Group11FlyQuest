@@ -40,8 +40,6 @@ double setCardNumber(USER u, double d) {
 double getCardNumber(USER u) {
 	return u.cardNumber;
 }
-
-
 char* setFirstName(USER u, char* name) {
 	return u.firstName = name;
 }
