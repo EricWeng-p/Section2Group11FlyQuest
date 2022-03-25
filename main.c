@@ -5,7 +5,7 @@
 int main(void) {
 	TICKET t;
 
-	//t = tempTicketGenerator();
+	t = tempTicketGenerator();
 	//getTicket(t);
 	//ticketPrinter(t);
 

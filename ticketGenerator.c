@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-
+#include <time.h>
+#include <stdlib.h>
 #include "ticketGenerator.h"
 //Assign relevant user and flight information, assign random variables for ticket
 //!!integrate user and flight variables!!
@@ -15,6 +16,7 @@ struct TICKET TicketGenerator(USER u, FLIGHT f) {
 	strcpy(t.flight_time, getTime());
 }
 */
+
 TICKET tempTicketGenerator() {
 	TICKET t = { "John", "Doe", "Toronto", getHex(), getGate(), getTime() };
 	strcpy(t.first_name, "John");
@@ -40,13 +42,14 @@ int getGate() {
 	int gateNum = (rand() % 12) + 1;
 	return gateNum;
 }
+
 char getHex() {
 	int h1, h2, h3;
-	char hex;
+	char hex[CH_LIMIT];
 	h1 = rand() % 255;
 	h2 = rand() % 255;
 	h3 = rand() % 255;
-	hex = ("%d%d%d", h1, h2, h3);
+	strcpy(hex, ("%d%d%d", &h1, &h2, &h3));
 	return hex;
 }
 
@@ -54,18 +57,18 @@ char getTime() {
 	int hour = rand() % 24; //00-23
 	int minutes = 15 * (rand() % 4);  //0-3*15 = 00, 15, 30, 45
 	char time[CH_LIMIT]; //12:45, 00:00, 18:30
-
+	
 	if (hour == 0 && minutes == 0)
 		strcpy(time, ("00:00"));
 
 	else if (hour == 0)
-		strcpy(time, ("00:%d", minutes));
+		strcpy(time, ("00:%d", &minutes));
 
-	else if (time == 0)
-		strcpy(time, ("%d:00", hour));
+	else if (minutes == 0)
+		strcpy(time, ("%d:00", &hour));
 
 	else
-		strcpy(time, ("%d:%d", hour, minutes));
+		strcpy(time, ("%d:%d", &hour, &minutes));
 
 	return time;
 }
