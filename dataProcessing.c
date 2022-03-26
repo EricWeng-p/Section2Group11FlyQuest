@@ -34,6 +34,7 @@ double decryptCardNumber(int* num) {
 	printf("\n"); //test
 	return 2;
 }
+//USER set/get
 double setCardNumber(USER u, double d) {
 	return u.cardNumber = d;
 }
@@ -58,7 +59,7 @@ void setCvv(USER u, int cvv) {
 int getCvv(USER u) {
 	return u.cvv;
 }
-
+//FLIGHT set/get
 char* getDestination(FLIGHT f) {
 	return f.flightDestination;
 }
@@ -72,6 +73,7 @@ bool setFlightDirection(FLIGHT f, bool b) {
 	return f.oneWay = b;
 }
 
+//generate FLIGHT datatype
 FLIGHT* generateRandomFlight() {
 	//use text file data to generate a random flight
 }
@@ -79,16 +81,17 @@ FLIGHT* generateRandomFlight() {
 FLIGHT* generateBlankFlight() {
 
 }
-//generate flight manually
+//generate manually
 FLIGHT* generateFlight(char* dest, bool way) {
 	FLIGHT f = { dest, way };
 	return &f;
 }
-FLIGHT* removeFlight(FLIGHT f) {
+FLIGHT* removeFlight(FLIGHT f) { //need save/load functions
 	//f.flightDestination = NULL;
 	//f.oneWay = NULL;
 	return &f;
 }
+
 //for testing
 USER generateRandomUser() {
 	//use text file to store list of names to choose from at random
@@ -98,4 +101,8 @@ USER generateRandomUser() {
 USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv) {
 	USER u = { firstName, lastName, cardNumber, cvv };
 	return u;
+}
+
+void addToUserList(USER u, USER listPtr, int listSize) 
+{ //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
 }
