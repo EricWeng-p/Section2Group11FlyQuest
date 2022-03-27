@@ -1,5 +1,7 @@
 #pragma once
 #define CARDNUMSIZE 9
+#define FLIGHTROWS 4
+#define FLIGHTCOLUMNS 15
 #include<stdbool.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -14,6 +16,7 @@ typedef struct USER {
 typedef struct FLIGHT {
 	char* flightDestination;
 	bool oneWay;
+	int seatChart[FLIGHTROWS][FLIGHTCOLUMNS];
 }FLIGHT;
 
 
@@ -35,9 +38,10 @@ char* setDestination(FLIGHT f, char* destination);
 bool getFlightDirection(FLIGHT f);
 bool setFlightDirection(FLIGHT f, bool b);
 
-FLIGHT* generateFlight();
-FLIGHT* generateRandomFlight();
+FLIGHT* generateFlight(void);
+FLIGHT* generateRandomFlight(void);
 FLIGHT* removeFlight(FLIGHT f);
+int* generateFlightSeating(void);
 
 USER generateRandomUser();
 USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv);

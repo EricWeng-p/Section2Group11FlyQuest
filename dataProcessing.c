@@ -34,6 +34,7 @@ double decryptCardNumber(int* num) {
 	printf("\n"); //test
 	return 2;
 }
+
 //USER set/get
 double setCardNumber(USER u, double d) {
 	return u.cardNumber = d;
@@ -59,6 +60,7 @@ void setCvv(USER u, int cvv) {
 int getCvv(USER u) {
 	return u.cvv;
 }
+
 //FLIGHT set/get
 char* getDestination(FLIGHT f) {
 	return f.flightDestination;
@@ -72,8 +74,51 @@ bool getFlightDirection(FLIGHT f) {
 bool setFlightDirection(FLIGHT f, bool b) {
 	return f.oneWay = b;
 }
+int* getFlightSeating(FLIGHT f) {
+	return f.seatChart;
+}
+//defining this function but our program should never need it
+void setFlightSeating(FLIGHT f, int* seatChart) {
+
+}
 
 //generate FLIGHT datatype
+//generate array for seating //must be done first
+int* generateFlightSeating() {
+	//set rand seed
+	time_t = t;
+	int seating[FLIGHTROWS][FLIGHTCOLUMNS];
+	int* seatingPtr = (int)malloc(sizeof(seating)); //should be free'd later in program
+	for (int i = FLIGHTROWS; i < FLIGHTROWS; i++) {
+		for (int p = FLIGHTCOLUMNS; i < FLIGHTCOLUMNS; p++) {
+			srand(time(&t));
+			if ((rand() % 1) == 0) {
+				seating[i][p] = 0;
+			}
+			else {
+				seating[i][p] = 1;
+			}
+		}
+	}
+	return seatingPtr;
+}
+//print seating chart to screen
+void printSeating(int* seating) {
+	printf("Empty seats: 0\nTaken seats: 1");
+	for (int i = 0; i < FLIGHTROWS; i++) {
+		printf("\n")
+			for (int p = 0; p < FLIGHTCOLUMNS; p++) {
+				printf(" %d ", seating[i][p]);
+			}
+	}
+}
+
+//generate manually
+FLIGHT* generateFlight(char* dest, bool way) {
+	int* seatChart = generateFlightSeating();
+	FLIGHT f = { dest, way, seatChart };
+	return &f;
+}
 FLIGHT* generateRandomFlight() {
 	//use text file data to generate a random flight
 }
@@ -81,28 +126,36 @@ FLIGHT* generateRandomFlight() {
 FLIGHT* generateBlankFlight() {
 
 }
-//generate manually
-FLIGHT* generateFlight(char* dest, bool way) {
-	FLIGHT f = { dest, way };
-	return &f;
-}
+
 FLIGHT* removeFlight(FLIGHT f) { //need save/load functions
-	//f.flightDestination = NULL;
-	//f.oneWay = NULL;
+	f.flightDestination = NULL;
+	f.oneWay = NULL;
+	free(f.seatChart);
+
+	//remove from flight list (need save/load)
+	//decrement flight list size
 	return &f;
 }
 
-//for testing
-USER generateRandomUser() {
-	//use text file to store list of names to choose from at random
-
-}
+//generate user functions
 //generate user manually
 USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv) {
 	USER u = { firstName, lastName, cardNumber, cvv };
 	return u;
 }
+//for testing
+USER generateRandomUser() {
+	//use text file to store list of names to choose from at random
 
-void addToUserList(USER u, USER listPtr, int listSize) 
-{ //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
+}
+void addToUserList(USER u, USER listPtr, int listSize){ //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
+	//need save/load functions
+}
+USER* removeUser(USER u) { //realloc list ptr to be 1 user smaller
+	u.firstName = NULL;
+	u.lastName = NULL;
+	u.cardNumber = NULL;
+	u.cvv = NULL;
+	//remove from user list(save/load)
+	return &u;
 }
