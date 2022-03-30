@@ -45,7 +45,7 @@ int getGate() {
 
 char* getHex() {
 	int h1, h2, h3;
-	char hex[CH_LIMIT];
+	static char hex[CH_LIMIT];
 
 	h1 = rand() % 255;
 	h2 = rand() % 255;
@@ -57,7 +57,7 @@ char* getHex() {
 char* getTime() {
 	int hour = rand() % 24; //00-23
 	int minutes = 15 * (rand() % 4);  //0-3*15 = 00, 15, 30, 45
-	char time[CH_LIMIT]; //12:45, 00:00, 18:30
+	static char time[CH_LIMIT]; //12:45, 00:00, 18:30
 	
 	sprintf(time, "%02d:%02d", hour, minutes);
 	
@@ -75,14 +75,15 @@ ____________________________________________________________
 |___________________________________________________________|
 */
 void ticketPrinter(TICKET t) { //need to align properly
-	printf("_"*, "\n");
+	//":%-15s\n"
+	printf("_________________________________________________________\n");
 	printf("| FlyQuest								 |\n");
-	printf("| FLIGHT: %s", t.ticket_ID);
-	printf("   BOARDING TIME: %s", t.flight_time);
-	printf("   GATE: %d		|", t.gate_number);
-	printf("\n| \n PASSENGER NAME: %s / %s		|", t.first_name, t.last_name);
+	printf(" | FLIGHT: % s", t.ticket_ID);
+	printf(" BOARDING TIME : % s", t.flight_time);
+	printf(" GATE: % d | ", t.gate_number);
+	printf("\n | \n PASSENGER NAME : % s / % s		", t.first_name, t.last_name);
 	printf("TO: %s			|", t.flight_destination);
-	printf("\n| \n|__________________________________________|\n");
+	printf("\n| \n|_________________________________________________|\n");
 }
 
 
