@@ -18,7 +18,7 @@ typedef struct TICKET {
 
 //struct TICKET TicketGenerator(USER u, FLIGHT f); //requires user struct and flight struct
 TICKET tempTicketGenerator();
-char getHex();
-char getTime();
+char* getHex();
+char* getTime();
 void getTicket(TICKET t);
 void ticketPrinter(TICKET t);
