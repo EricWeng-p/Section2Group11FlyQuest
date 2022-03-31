@@ -78,7 +78,7 @@ void saveUserListToFile(USER* u) {
 
 void printUserList(USER* u) {
 	int count = 0;
-	for (int i = 0; i < getSize(); i++) {
+	for (int i = 0; i < getUserListSize(); i++) {
 		printf("%s%s%f\n%d\n", (u + count)->firstName, (u + count)->lastName, (u + count)->cardNumber, (u + count)->cvv); //%.0f causes program timeout
 		count++;
 	}
