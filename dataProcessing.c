@@ -16,9 +16,10 @@ int* encryptCardNumber(double d) {
 		numArr[i] = numArr[i] << encryptionKey[i]; //bit shift each value left based on encryption key
 		printf("%d/", numArr[i]); //test
 	}
+	
 	printf("\n"); //test
 	free(arr);
-	return numArr;
+	return numArr;-
 }
 double decryptCardNumber(int* num) {
 	int numArr[CARDNUMSIZE];
@@ -34,7 +35,6 @@ double decryptCardNumber(int* num) {
 	printf("\n"); //test
 	return 2;
 }
-
 //USER set/get
 double setCardNumber(USER u, double d) {
 	return u.cardNumber = d;
@@ -45,11 +45,11 @@ double getCardNumber(USER u) {
 char* setFirstName(USER u, char* name) {
 	return u.firstName = name;
 }
-char* setLastName(USER u, char* name) {
-	return u.lastName = name;
-}
 char* getFirstName(USER u) {
 	return u.firstName;
+}
+char* setLastName(USER u, char* name) {
+	return u.lastName = name;
 }
 char* getLastName(USER u) {
 	return u.lastName;
@@ -60,6 +60,27 @@ void setCvv(USER u, int cvv) {
 int getCvv(USER u) {
 	return u.cvv;
 }
+//USER
+//generate user manually
+USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv) {
+	USER u = { firstName, lastName, cardNumber, cvv };
+	return u;
+}
+USER generateRandomUser() {
+	//use text file to store list of names to choose from at random //testingGOAL?
+}
+USER* removeUser(USER u) { //realloc list ptr to be 1 user smaller
+	u.firstName = NULL;
+	u.lastName = NULL;
+	u.cardNumber = NULL;
+	u.cvv = NULL;
+	//remove from user list(save/load)
+	return &u;
+}
+
+
+
+
 
 //FLIGHT set/get
 char* getDestination(FLIGHT f) {
@@ -137,25 +158,10 @@ FLIGHT* removeFlight(FLIGHT f) { //need save/load functions
 	return &f;
 }
 
-//generate user functions
-//generate user manually
-USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv) {
-	USER u = { firstName, lastName, cardNumber, cvv };
-	return u;
-}
-//for testing
-USER generateRandomUser() {
-	//use text file to store list of names to choose from at random
+
+void addToFlightList(FLIGHT f, FLIGHT* flightPtr, int listSize) {
 
 }
-void addToUserList(USER u, USER listPtr, int listSize){ //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
+void addToUserList(USER u, USER* listPtr, int listSize) { //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
 	//need save/load functions
-}
-USER* removeUser(USER u) { //realloc list ptr to be 1 user smaller
-	u.firstName = NULL;
-	u.lastName = NULL;
-	u.cardNumber = NULL;
-	u.cvv = NULL;
-	//remove from user list(save/load)
-	return &u;
 }
