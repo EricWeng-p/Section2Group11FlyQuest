@@ -73,7 +73,11 @@ USER* loadUserListFromFile() {
 }
 
 void saveUserListToFile(USER* u) {
-
+	FILE* fp = fopen("userList.txt", "w");
+	for (int i = 0; i < getUserListSize(); i++) {
+		fprintf(fp, "%s%s%f\n%d\n", (u + i)->firstName, (u + i)->lastName, (u + i)->cardNumber, (u + i)->cvv);
+	}
+	fclose(fp);
 }
 
 void printUserList(USER* u) {
