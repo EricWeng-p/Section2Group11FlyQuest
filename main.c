@@ -6,9 +6,10 @@
 # include <string.h>
 #include"dataProcessing.h"
 
-void readUserFile(USER* u) {
+USER* readUserFile() {
 	//open file
 	FILE* fp = fopen("text.txt", "r");
+	//find size of file
 	int size = 1;
 	char ch; //buffer
 	while (!feof(fp)) {
@@ -18,11 +19,9 @@ void readUserFile(USER* u) {
 		}
 	}
 	size = size / 4;
-	//find size of file
 	printf("%d", size);
 	//malloc space
-	//structure array
-	USER* userArray = (USER)malloc(sizeof(USER) * size);
+	USER* userArray = (USER*)malloc(sizeof(USER) * size);
 	//read file line by line into userArray
 
 
@@ -40,8 +39,7 @@ void main()
 	char lname = 'A';
 	double cardnumber = 17;
 	int cvv = 101;
+	USER* userArray = readUserFile();
 
-	filewrite(fname, lname, cardnumber, cvv);
-	fileread(fname, lname, cardnumber, cvv);
 
 }
