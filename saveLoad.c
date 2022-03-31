@@ -29,36 +29,43 @@ USER* loadUserListFromFile() {
 	size = size / 4;
 	setUserListSize(size);
 	//malloc space
-	USER* userArray = (USER*)malloc(sizeof(USER) * size);
-	//read file line by line into tempArray
-	fseek(fp, 0, SEEK_SET);
-	char buffer[NAMESIZE];
-	char count = 1, userCount = -1;
-	while (fgets(buffer, 25, fp)) {
-		//	printf("%s", buffer); //testing
-		switch (count) {
-		case 1:
-			userCount++;
-			strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
-			count++;
-			break;
-		case 2:
-			strncpy((userArray + userCount)->lastName, buffer, NAMESIZE);
-			count++;
-			break;
-		case 3:
-			(userArray + userCount)->cardNumber = atoi(buffer);
-			count++;
-			break;
-		case 4:
-			(userArray + userCount)->cvv = atoi(buffer);
-			count = 1;
-			break;
-		default:
-			count++;
-			break;
+	if (USER* userArray = (USER*)malloc(sizeof(USER) * size) != NULL) {
+		//read file line by line into tempArray
+		fseek(fp, 0, SEEK_SET);
+		char buffer[NAMESIZE];
+		char count = 1, userCount = -1;
+		while (fgets(buffer, 25, fp)) {
+			//	printf("%s", buffer); //testing
+			switch (count) {
+			case 1:
+				userCount++;
+				strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
+				count++;
+				break;
+			case 2:
+				strncpy((userArray + userCount)->lastName, buffer, NAMESIZE);
+				count++;
+				break;
+			case 3:
+				(userArray + userCount)->cardNumber = atoi(buffer);
+				count++;
+				break;
+			case 4:
+				(userArray + userCount)->cvv = atoi(buffer);
+				count = 1;
+				break;
+			default:
+				count++;
+				break;
+			}
 		}
 	}
+	else {
+		printf("Memory allocation failed... exiting program");
+		fclose(fp);
+		exit(0);
+	}
+	
 	//close file
 	fclose(fp);
 	//return array ptr
