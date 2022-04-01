@@ -151,9 +151,8 @@ FLIGHT* loadFlightListFromFile() {
 
 void saveFlightListToFile(FLIGHT* f) {
 	FILE* fp = fopen("flightList.txt", "w");
-	bool way = true;
 	for (int i = 0; i < getFlightListSize(); i++) {
-		fprintf(fp, "%s%d\n", (f + i)->flightDestination, way);
+		fprintf(fp, "%s%d\n", (f + i)->flightDestination, (f + i)->oneWay);
 	}
 	fclose(fp);
 }
