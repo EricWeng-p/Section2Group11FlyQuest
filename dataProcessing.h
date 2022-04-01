@@ -45,25 +45,3 @@ FLIGHT* generateFlight(void);
 FLIGHT* generateRandomFlight(void);
 int* generateFlightSeating(void);
 FLIGHT* removeFlight(FLIGHT f);
-
-
-//LIST ITEMS
-private int flightListSize, userListSize;
-//CAN MAKE
-void printFlightList(); //code
-void printUserList(); //code
-int getFlightListSize();
-int getUserListSize();
-int setFlightListSize();
-int setUserListSize();
-
-void decrementFlightListSize();
-void decrementUserListSize();
-void incrementFlightListSize();
-void incrementUserListSize();
-
-
-
-
-
-
