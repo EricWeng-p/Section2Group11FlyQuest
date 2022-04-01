@@ -1,5 +1,6 @@
 #pragma once
 #include"dataProcessing.h"
+#define NAMESIZE 25
 //listsize
 static int userListSize, flightListSize;
 void setUserListSize(int s);

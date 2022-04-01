@@ -1,0 +1,4 @@
+﻿  main.c
+main.obj : error LNK2019: unresolved external symbol loadUserListFromFile referenced in function main
+main.obj : error LNK2019: unresolved external symbol loadFlightListFromFile referenced in function main
+C:\Users\doupe\Source\Repos\flyQuest\x64\Debug\Hello World.exe : fatal error LNK1120: 2 unresolved externals

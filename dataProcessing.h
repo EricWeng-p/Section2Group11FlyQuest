@@ -1,10 +1,13 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #define CARDNUMSIZE 9
 #define FLIGHTROWS 4
 #define FLIGHTCOLUMNS 15
 #include<stdbool.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
+
 
 typedef struct USER {
 	char* firstName;
@@ -41,7 +44,7 @@ char* setDestination(FLIGHT f, char* destination);
 bool getFlightDirection(FLIGHT f);
 bool setFlightDirection(FLIGHT f, bool b);
 
-FLIGHT* generateFlight(void);
+FLIGHT* generateFlight(char* dest, bool way);
 FLIGHT* generateRandomFlight(void);
 int* generateFlightSeating(void);
 FLIGHT* removeFlight(FLIGHT f);

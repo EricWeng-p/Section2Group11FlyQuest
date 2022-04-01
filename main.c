@@ -9,12 +9,7 @@ int main(int argc, char* argv[])
 	else
 		printf("no argument given\n");
 
-	FLIGHT* flightList = loadFlightListFromFile();
-	USER* userList = loadUserListFromFile();
-
-
-	
 	
 
-
+	return 1;
 }

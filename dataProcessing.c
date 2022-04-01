@@ -4,9 +4,9 @@ int encryptionKey[CARDNUMSIZE] = { 3, 2, 5, 3, 6, 5, 3, 5, 6};
 //cardNumber
 int* encryptCardNumber(double d) {
 	//convert d into a string array
-	char* arr = malloc(10); //cardnumsize + 1
+	char* arr = malloc(sizeof(char) * (CARDNUMSIZE + 1)); //cardnumsize + 1
 	snprintf(arr, 10, "%f", d);
-	int* numArr = malloc(CARDNUMSIZE);
+	int* numArr = (int*)malloc(CARDNUMSIZE );
 	for (int i = 0; i < CARDNUMSIZE; i++) {
 		numArr[i] = (arr[i] - '0');
 		printf("%d/", numArr[i]); //test
@@ -19,7 +19,7 @@ int* encryptCardNumber(double d) {
 	
 	printf("\n"); //test
 	free(arr);
-	return numArr;-
+	return numArr;
 }
 double decryptCardNumber(int* num) {
 	int numArr[CARDNUMSIZE];
@@ -70,10 +70,7 @@ USER generateRandomUser() {
 	//use text file to store list of names to choose from at random //testingGOAL?
 }
 USER* removeUser(USER u) { //realloc list ptr to be 1 user smaller
-	u.firstName = NULL;
-	u.lastName = NULL;
-	u.cardNumber = NULL;
-	u.cvv = NULL;
+
 	//remove from user list(save/load)
 	return &u;
 }
@@ -107,9 +104,9 @@ void setFlightSeating(FLIGHT f, int* seatChart) {
 //generate array for seating //must be done first
 int* generateFlightSeating() {
 	//set rand seed
-	time_t = t;
+	time_t  t;
 	int seating[FLIGHTROWS][FLIGHTCOLUMNS];
-	int* seatingPtr = (int)malloc(sizeof(seating)); //should be free'd later in program
+	int* seatingPtr = (int*)malloc(sizeof(seating)); //should be free'd later in program
 	for (int i = FLIGHTROWS; i < FLIGHTROWS; i++) {
 		for (int p = FLIGHTCOLUMNS; i < FLIGHTCOLUMNS; p++) {
 			srand(time(&t));
@@ -127,9 +124,9 @@ int* generateFlightSeating() {
 void printSeating(int* seating) {
 	printf("Empty seats: 0\nTaken seats: 1");
 	for (int i = 0; i < FLIGHTROWS; i++) {
-		printf("\n")
+		printf("\n");
 			for (int p = 0; p < FLIGHTCOLUMNS; p++) {
-				printf(" %d ", seating[i][p]);
+		//		printf(" %d ", seating[i][p]);
 			}
 	}
 }

@@ -13,16 +13,16 @@ void setFlightListSize(int s) {
 	flightListSize = s;
 }
 void decrementFlightListSize() {
-	setFlightListSize(getFlightListSize()--);
+	setFlightListSize(getFlightListSize() - 1);
 }
 void incrementFlightListSize() {
-	setFlightListSize(getFlightListSize()++);
+	setFlightListSize(getFlightListSize() + 1);
 }
 void decrementUserListSize() {
-	setUserListSize(getUserListSize()--);
+	setUserListSize(getUserListSize() - 1);
 }
 void incrementUserListSize() {
-	setUserListSize(getUserListSize()++);
+	setUserListSize(getUserListSize() - 1);
 }
 //user list functions
 USER* loadUserListFromFile() {
@@ -116,7 +116,7 @@ FLIGHT* loadFlightListFromFile() {
 	if (flightArray != NULL) {
 		fseek(fp, 0, SEEK_SET);
 		char buffer[NAMESIZE];
-		char count = 1, flightCount = -1;
+		int count = 1, flightCount = -1;
 		while (fgets(buffer, NAMESIZE, fp)) {
 			printf("%s", buffer); //testing
 			switch (count) {
