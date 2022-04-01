@@ -16,7 +16,7 @@ void setFlightListSize(int s) {
 //user list functions
 USER* loadUserListFromFile() {
 	//open file
-	FILE* fp = fopen("text.txt", "r");
+	FILE* fp = fopen("userList.txt", "r");
 	//find size of file
 	int size = 1;
 	char ch; //buffer
@@ -29,43 +29,40 @@ USER* loadUserListFromFile() {
 	size = size / 4;
 	setUserListSize(size);
 	//malloc space
-	if (USER* userArray = (USER*)malloc(sizeof(USER) * size) != NULL) {
-		//read file line by line into tempArray
-		fseek(fp, 0, SEEK_SET);
-		char buffer[NAMESIZE];
-		char count = 1, userCount = -1;
-		while (fgets(buffer, 25, fp)) {
-			//	printf("%s", buffer); //testing
-			switch (count) {
-			case 1:
-				userCount++;
-				strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
-				count++;
-				break;
-			case 2:
-				strncpy((userArray + userCount)->lastName, buffer, NAMESIZE);
-				count++;
-				break;
-			case 3:
-				(userArray + userCount)->cardNumber = atoi(buffer);
-				count++;
-				break;
-			case 4:
-				(userArray + userCount)->cvv = atoi(buffer);
-				count = 1;
-				break;
-			default:
-				count++;
-				break;
-			}
+	USER* userArray = (USER*)malloc(sizeof(USER) * size);
+	if (userArray == NULL) {
+		printf("Error allocating memory, exiting program...");
+		exit(1);
+	}
+	//read file line by line into tempArray
+	fseek(fp, 0, SEEK_SET);
+	char buffer[NAMESIZE];
+	char count = 1, userCount = -1;
+	while (fgets(buffer, 25, fp)) {
+		//	printf("%s", buffer); //testing
+		switch (count) {
+		case 1:
+			userCount++;
+			strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
+			count++;
+			break;
+		case 2:
+			strncpy((userArray + userCount)->lastName, buffer, NAMESIZE);
+			count++;
+			break;
+		case 3:
+			(userArray + userCount)->cardNumber = atoi(buffer);
+			count++;
+			break;
+		case 4:
+			(userArray + userCount)->cvv = atoi(buffer);
+			count = 1;
+			break;
+		default:
+			count++;
+			break;
 		}
 	}
-	else {
-		printf("Memory allocation failed... exiting program");
-		fclose(fp);
-		exit(0);
-	}
-	
 	//close file
 	fclose(fp);
 	//return array ptr
@@ -90,12 +87,70 @@ void printUserList(USER* u) {
 
 //flight list functions
 FLIGHT* loadFlightListFromFile() {
-	FLIGHT* f;
-	return f;
+	//open file
+	FILE* fp = fopen("flightList.txt", "r");
+	//find size of file
+	int size = 1;
+	char ch; //buffer
+	while (!feof(fp)) {
+		ch = fgetc(fp);
+		if (ch == '\n') {
+			size++;
+		}
+	}
+	size = size / 2;
+	setFlightListSize(size);
+	//malloc space
+	FLIGHT* flightArray = (FLIGHT*)malloc(sizeof(FLIGHT) * size);
+	if (flightArray != NULL) {
+		fseek(fp, 0, SEEK_SET);
+		char buffer[NAMESIZE];
+		char count = 1, flightCount = -1;
+		while (fgets(buffer, NAMESIZE, fp)) {
+			printf("%s", buffer); //testing
+			switch (count) {
+			case 1:
+				flightCount++;
+				strncpy((flightArray + flightCount)->flightDestination, buffer, NAMESIZE);
+				count++;
+				break;
+			case 2:
+				if (atoi(buffer) == 0) {
+					(flightArray + flightCount)->oneWay = true;
+				}
+				else {
+					(flightArray + flightCount)->oneWay = false;
+				}
+				count = 1;
+				break;
+			default:
+				count++;
+				break;
+			}
+		}
+	}
+	else {
+		printf("Memory allocation failed... exiting program");
+		fclose(fp);
+		exit(0);
+	}
+	fclose(fp);
+	return flightArray;
 }
+
 void saveFlightListToFile(FLIGHT* f) {
-
+	FILE* fp = fopen("flightList.txt", "w");
+	bool way = true;
+	for (int i = 0; i < getFlightListSize(); i++) {
+		fprintf(fp, "%s%d\n", (f + i)->flightDestination, way);
+	}
+	fclose(fp);
 }
-void printFlightList(FLIGHT* f) {
 
+void printFlightList(FLIGHT* f) {
+	int count = 0;
+	for (int i = 0; i < getFlightListSize(); i++) {
+		printf("%s%d\n", (f + count)->flightDestination, (f + count)->oneWay);
+		count++;
+	}
 }
