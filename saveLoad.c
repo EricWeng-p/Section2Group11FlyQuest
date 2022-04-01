@@ -49,11 +49,11 @@ USER* loadUserListFromFile() {
 	fseek(fp, 0, SEEK_SET);
 	char buffer[NAMESIZE];
 	char count = 1, userCount = -1;
-	while (fgets(buffer, 25, fp)) {
+	while (fgets(buffer, NAMESIZE, fp)) {
 		//	printf("%s", buffer); //testing
+		userCount++;
 		switch (count) {
 		case 1:
-			userCount++;
 			strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
 			count++;
 			break;
@@ -79,7 +79,6 @@ USER* loadUserListFromFile() {
 	//return array ptr
 	return userArray;
 }
-
 void saveUserListToFile(USER* u) {
 	FILE* fp = fopen("userList.txt", "w");
 	for (int i = 0; i < getUserListSize(); i++) {

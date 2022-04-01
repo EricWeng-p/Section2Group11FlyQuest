@@ -2,7 +2,7 @@
 #include"dataProcessing.h"
 #define NAMESIZE 25
 //listsize
-static int userListSize, flightListSize;
+static int userListSize = 0, flightListSize = 0;
 void setUserListSize(int s);
 int getUserListSize();
 void setFlightListSize(int s);
