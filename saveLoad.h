@@ -6,6 +6,10 @@ void setUserListSize(int s);
 int getUserListSize();
 void setFlightListSize(int s);
 int getFlightListSize();
+void decrementFlightListSize();
+void decrementUserListSize();
+void incrementFlightListSize();
+void incrementUserListSize();
 //user
 USER* loadUserListFromFile();
 void saveUserListToFile(USER* u);

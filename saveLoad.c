@@ -12,7 +12,18 @@ void setUserListSize(int s) {
 void setFlightListSize(int s) {
 	flightListSize = s;
 }
-
+void decrementFlightListSize() {
+	setFlightListSize(getFlightListSize()--);
+}
+void incrementFlightListSize() {
+	setFlightListSize(getFlightListSize()++);
+}
+void decrementUserListSize() {
+	setUserListSize(getUserListSize()--);
+}
+void incrementUserListSize() {
+	setUserListSize(getUserListSize()++);
+}
 //user list functions
 USER* loadUserListFromFile() {
 	//open file
