@@ -1,0 +1,13 @@
+﻿  dataProcessing.c
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(96,20): warning C4047: 'return': 'int *' differs in levels of indirection from 'int [4][15]'
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(112,18): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(137,1): warning C4047: 'initializing': 'int' differs in levels of indirection from 'int *'
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(150,17): warning C4047: '=': 'bool' differs in levels of indirection from 'void *'
+  main.c
+  saveLoad.c
+  Generating Code...
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(142): warning C4716: 'generateRandomFlight': must return a value
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(71): warning C4716: 'generateRandomUser': must return a value
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(146): warning C4716: 'generateBlankFlight': must return a value
+C:\Users\doupe\source\repos\FQ\dataProcessing.c(138): warning C4172: returning address of local variable or temporary: f
+  Hello World.vcxproj -> C:\Users\doupe\Source\Repos\FQ\x64\Debug\Hello World.exe

@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dataProcessing.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="saveLoad.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dataProcessing.h" />
+    <ClInclude Include="saveLoad.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
