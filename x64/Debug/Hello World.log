@@ -1,2 +1,6 @@
 ﻿  main.c
-  Hello World.vcxproj -> C:\Users\doupe\Source\Repos\FQ\x64\Debug\Hello World.exe
+C:\Users\ericw\source\repos\Section2Group11FlyQuestsavefile\main.c(17,33): warning C4047: 'function': 'FLIGHT *' differs in levels of indirection from 'FLIGHT *[2]'
+C:\Users\ericw\source\repos\Section2Group11FlyQuestsavefile\main.c(17,23): warning C4024: 'saveFlightListToFile': different types for formal and actual parameter 1
+C:\Users\ericw\source\repos\Section2Group11FlyQuestsavefile\main.c(18,28): warning C4047: 'function': 'FLIGHT *' differs in levels of indirection from 'FLIGHT *[2]'
+C:\Users\ericw\source\repos\Section2Group11FlyQuestsavefile\main.c(18,18): warning C4024: 'printFlightList': different types for formal and actual parameter 1
+  Hello World.vcxproj -> C:\Users\ericw\source\repos\Section2Group11FlyQuestsavefile\x64\Debug\Hello World.exe
