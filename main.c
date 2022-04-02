@@ -9,7 +9,5 @@ int main(int argc, char* argv[])
 	else
 		printf("no argument given\n");
 
-	
-
 	return 1;
 }
