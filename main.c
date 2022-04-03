@@ -4,6 +4,7 @@
 #include "ticketGenerator.h"
 
 int main(void) {
+
 	TICKET t;
 	srand(time(NULL));
 	printf("%d\n", getGate());
