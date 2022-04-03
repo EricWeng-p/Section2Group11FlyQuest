@@ -50,8 +50,10 @@ void welcome() {
 }
 
 void main() {
+
 	welcome();
 	checkFor();
 	printOption();
+
 
 }
