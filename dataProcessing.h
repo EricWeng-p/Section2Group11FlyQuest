@@ -4,6 +4,7 @@
 #define FLIGHTROWS 4
 #define FLIGHTCOLUMNS 15
 #define NAMESIZE 25
+#define WAYSIZE 2
 #include<stdbool.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -20,7 +21,7 @@ typedef struct USER {
 
 typedef struct FLIGHT {
 	char flightDestination[NAMESIZE];
-	char oneWay;
+	int oneWay;
 	int seatChart[FLIGHTROWS][FLIGHTCOLUMNS];
 }FLIGHT;
 

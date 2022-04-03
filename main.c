@@ -13,8 +13,15 @@ int main(int argc, char* argv[])
 
 	USER* userList = loadUserListFromFile();
 	FLIGHT* flightList = loadFlightListFromFile();
+
 	printUserList(userList);
 	printFlightList(flightList);
+
+	FLIGHT f = { "New Brunswick\n", 1, generateFlightSeating() };
+	flightList = addToFlightList(f, flightList);
+	printFlightList(flightList);
+
+	saveFlightListToFile(flightList);
 
 	if (userList != NULL) {
 		free(userList);
