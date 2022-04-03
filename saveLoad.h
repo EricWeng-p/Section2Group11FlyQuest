@@ -14,6 +14,7 @@ void incrementUserListSize();
 USER* loadUserListFromFile();
 void saveUserListToFile(USER* u);
 void printUserList(USER* u);
+USER* addToUserList(USER u, USER* listPtr);
 //flight
 FLIGHT* loadFlightListFromFile();
 void saveFlightListToFile(FLIGHT* f);

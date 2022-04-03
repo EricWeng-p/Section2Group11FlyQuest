@@ -29,7 +29,7 @@ USER* loadUserListFromFile() {
 	//open file
 	FILE* fp = fopen("userList.txt", "r");
 	//find size of file
-	int size = 4;
+	int size = 0;
 	char ch; //buffer
 	while (!feof(fp)) {
 		ch = fgetc(fp);
@@ -83,6 +83,7 @@ USER* loadUserListFromFile() {
 }
 void saveUserListToFile(USER* u) {
 	FILE* fp = fopen("userList.txt", "w");
+	printf("\nUser List size: %d\n", getUserListSize());
 	for (int i = 0; i < getUserListSize(); i++) {
 		fprintf(fp, "%s%s%f\n%d\n", (u + i)->firstName, (u + i)->lastName, (u + i)->cardNumber, (u + i)->cvv);
 	}
@@ -91,8 +92,8 @@ void saveUserListToFile(USER* u) {
 
 void printUserList(USER* u) {
 	int count = 0;
+	printf("\nUser List size: %d\n", getUserListSize());
 	for (int i = 0; i < getUserListSize(); i++) {
-
 		printf("%s%s%f\n%d\n", (u + count)->firstName, (u + count)->lastName, (u + count)->cardNumber, (u + count)->cvv); //%.0f causes program timeout
 		count++;
 	}
@@ -164,7 +165,7 @@ void printFlightList(FLIGHT* f) {
 }
 
 FLIGHT* addToFlightList(FLIGHT f, FLIGHT* flightPtr) {
-	if (!getFlightListSize()) { //0
+	if (getFlightListSize() == 0) { 
 		setFlightListSize(1);
 	}
 	else {
@@ -175,6 +176,18 @@ FLIGHT* addToFlightList(FLIGHT f, FLIGHT* flightPtr) {
 	(newFlt + getFlightListSize() - 1)->oneWay = f.oneWay;
 	return newFlt;
 }
-void addToUserList(USER u, USER* listPtr, int listSize) { //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
-	//need save/load functions
+
+USER* addToUserList(USER u, USER* listPtr) { 
+	if (getUserListSize() == 0) {
+		setUserListSize(1);
+	}
+	else {
+		incrementUserListSize();
+	}
+	USER* newUsr = (USER*)realloc(listPtr, (sizeof(USER) * getUserListSize()));
+	strncpy((listPtr + (getUserListSize() - 1))->firstName, u.firstName, NAMESIZE);
+	strncpy((listPtr + (getUserListSize() - 1))->lastName, u.lastName, NAMESIZE);
+	(listPtr + (getUserListSize() - 1))->cardNumber = u.cardNumber;
+	(listPtr + (getUserListSize() - 1))->cvv = u.cvv;
+	return newUsr;
 }

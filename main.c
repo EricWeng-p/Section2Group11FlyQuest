@@ -11,17 +11,21 @@ int main(int argc, char* argv[])
 
 
 
-	USER* userList = loadUserListFromFile();
-	FLIGHT* flightList = loadFlightListFromFile();
+	USER* userList = loadUserListFromFile(); //working
+	FLIGHT* flightList = loadFlightListFromFile(); //working
 
-	printUserList(userList);
-	printFlightList(flightList);
+	printUserList(userList); //working
+//	printFlightList(flightList); //working
 
-	FLIGHT f = { "New Brunswick\n", 1, generateFlightSeating() };
-	flightList = addToFlightList(f, flightList);
-	printFlightList(flightList);
+//	FLIGHT f = { "New Brunswick\n", 1, generateFlightSeating() };
+	//flightList = addToFlightList(f, flightList); //working
+	//printFlightList(flightList);
 
-	saveFlightListToFile(flightList);
+	//saveFlightListToFile(flightList); //working
+
+	USER u = {"Eric\n", "Weng\n", 334551231, 586};
+	userList = addToUserList(u, userList); //userListsize is changing here
+	saveUserListToFile(userList);
 
 	if (userList != NULL) {
 		free(userList);
