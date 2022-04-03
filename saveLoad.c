@@ -100,7 +100,7 @@ FLIGHT* loadFlightListFromFile() {
 	//open file
 	FILE* fp = fopen("flightList.txt", "r");
 	//find size of file
-	int size = 1;
+	int size = 2;
 	char ch; //buffer
 	while (!feof(fp)) {
 		ch = fgetc(fp);
@@ -117,7 +117,7 @@ FLIGHT* loadFlightListFromFile() {
 		char buffer[NAMESIZE];
 		int count = 1, flightCount = -1;
 		while (fgets(buffer, NAMESIZE, fp)) {
-			printf("%s", buffer); //testing
+			//printf("%s", buffer); //testing
 			switch (count) {
 			case 1:
 				flightCount++;
@@ -159,7 +159,25 @@ void saveFlightListToFile(FLIGHT* f) {
 void printFlightList(FLIGHT* f) {
 	int count = 0;
 	for (int i = 0; i < getFlightListSize(); i++) {
-		printf("%s%d\n", (f + count)->flightDestination, (f + count)->oneWay);
+		printf("%s%c\n", (f + count)->flightDestination, (f + count)->oneWay);
 		count++;
 	}
+}
+
+FLIGHT* addToFlightList(FLIGHT f, FLIGHT* flightPtr) {
+	if (!getFlightListSize()) { //0
+		setFlightListSize(1);
+	}
+	else {
+		incrementFlightListSize();
+	}
+	FLIGHT* newFlt = (FLIGHT*)realloc(flightPtr, (sizeof(FLIGHT) * getFlightListSize()));
+	printf("%d", getFlightListSize());
+	strncpy((newFlt + (getFlightListSize() - 1))->flightDestination, f.flightDestination, NAMESIZE);
+	(newFlt + getFlightListSize() - 1)->oneWay = f.oneWay;
+	
+	return newFlt;
+}
+void addToUserList(USER u, USER* listPtr, int listSize) { //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
+	//need save/load functions
 }

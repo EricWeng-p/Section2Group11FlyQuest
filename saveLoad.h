@@ -1,6 +1,5 @@
 #pragma once
 #include"dataProcessing.h"
-#define NAMESIZE 25
 //listsize
 static int userListSize = 0, flightListSize = 0;
 void setUserListSize(int s);
@@ -19,3 +18,4 @@ void printUserList(USER* u);
 FLIGHT* loadFlightListFromFile();
 void saveFlightListToFile(FLIGHT* f);
 void printFlightList(FLIGHT* f);
+FLIGHT* addToFlightList(FLIGHT f, FLIGHT* flightPtr);

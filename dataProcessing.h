@@ -3,6 +3,7 @@
 #define CARDNUMSIZE 9
 #define FLIGHTROWS 4
 #define FLIGHTCOLUMNS 15
+#define NAMESIZE 25
 #include<stdbool.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -11,15 +12,15 @@
 
 
 typedef struct USER {
-	char* firstName;
-	char* lastName;
+	char firstName;
+	char lastName;
 	double cardNumber;
 	int cvv;
 }USER;
 
 typedef struct FLIGHT {
-	char* flightDestination;
-	bool oneWay;
+	char flightDestination[NAMESIZE];
+	char oneWay;
 	int seatChart[FLIGHTROWS][FLIGHTCOLUMNS];
 }FLIGHT;
 
@@ -42,10 +43,10 @@ USER* removeUser(USER u);
 //FLIGHT
 char* getDestination(FLIGHT f);
 char* setDestination(FLIGHT f, char* destination);
-bool getFlightDirection(FLIGHT f);
-bool setFlightDirection(FLIGHT f, bool b);
+char getFlightDirection(FLIGHT f);
+char setFlightDirection(FLIGHT f, char c);
 
-FLIGHT* generateFlight(char* dest, bool way);
+FLIGHT* generateFlight(char dest[NAMESIZE], char way);
 FLIGHT* generateRandomFlight(void);
 int* generateFlightSeating(void);
 FLIGHT* removeFlight(FLIGHT f);

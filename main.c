@@ -10,19 +10,17 @@ int main(int argc, char* argv[])
 		printf("no argument given\n");
 
 
-	FLIGHT* flightlist[2];
-	flightlist[0] = generateFlight("London", true);
-	flightlist[1] = generateFlight("Paris", false);
 
-	saveFlightListToFile(flightlist);
-	printFlightList(flightlist);
-	loadFlightListFromFile();
+	//addtoflightlist test
+	FLIGHT* flightList = loadFlightListFromFile();
+	FLIGHT* listReference = &flightList;
+	printFlightList(flightList);
+	FLIGHT f = { "arkansas county\n", 't', generateFlightSeating() };
+	flightList = addToFlightList(f, flightList);
+	printFlightList(flightList);
+	if (flightList != NULL) {
+		free(flightList);
+	}
+	
 
-	USER userlist[2];
-	userlist[0] = generateUser("John", "Doe", 12345678, 321);
-	userlist[1] = generateUser("Jane", "Doe", 87654321, 123);
-
-	saveUserListToFile(userlist);
-	printUserList(userlist);
-	loadUserListFromFile();
 }

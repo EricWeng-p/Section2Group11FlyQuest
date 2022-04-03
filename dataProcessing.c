@@ -1,5 +1,6 @@
 #include"dataProcessing.h"
 
+
 int encryptionKey[CARDNUMSIZE] = { 3, 2, 5, 3, 6, 5, 3, 5, 6};
 //cardNumber
 int* encryptCardNumber(double d) {
@@ -79,22 +80,7 @@ USER* removeUser(USER u) { //realloc list ptr to be 1 user smaller
 
 
 
-//FLIGHT set/get
-char* getDestination(FLIGHT f) {
-	return f.flightDestination;
-}
-char* setDestination(FLIGHT f, char* destination) {
-	return f.flightDestination = destination;
-}
-bool getFlightDirection(FLIGHT f) {
-	return f.oneWay;
-}
-bool setFlightDirection(FLIGHT f, bool b) {
-	return f.oneWay = b;
-}
-int* getFlightSeating(FLIGHT f) {
-	return f.seatChart;
-}
+
 //defining this function but our program should never need it
 void setFlightSeating(FLIGHT f, int* seatChart) {
 
@@ -132,10 +118,9 @@ void printSeating(int* seating) {
 }
 
 //generate manually
-FLIGHT* generateFlight(char* dest, bool way) {
-	int* seatChart = generateFlightSeating();
-	FLIGHT f = { dest, way, seatChart };
-	return &f;
+FLIGHT* generateFlight(char* dest, char way) {
+
+
 }
 FLIGHT* generateRandomFlight() {
 	//use text file data to generate a random flight
@@ -146,19 +131,7 @@ FLIGHT* generateBlankFlight() {
 }
 
 FLIGHT* removeFlight(FLIGHT f) { //need save/load functions
-	f.flightDestination = NULL;
-	f.oneWay = NULL;
-	free(f.seatChart);
-
-	//remove from flight list (need save/load)
-	//decrement flight list size
-	return &f;
+	
 }
 
 
-void addToFlightList(FLIGHT f, FLIGHT* flightPtr, int listSize) {
-
-}
-void addToUserList(USER u, USER* listPtr, int listSize) { //using list pointer and list size, realloc listptr to accomodate extra user then add u to list
-	//need save/load functions
-}
