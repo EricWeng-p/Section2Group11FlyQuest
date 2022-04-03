@@ -12,8 +12,8 @@
 
 
 typedef struct USER {
-	char firstName;
-	char lastName;
+	char firstName[NAMESIZE];
+	char lastName[NAMESIZE];
 	double cardNumber;
 	int cvv;
 }USER;

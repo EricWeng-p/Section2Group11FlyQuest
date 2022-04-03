@@ -11,13 +11,14 @@ int main(int argc, char* argv[])
 
 
 
-	//addtoflightlist test
+	USER* userList = loadUserListFromFile();
 	FLIGHT* flightList = loadFlightListFromFile();
-	FLIGHT* listReference = &flightList;
+	printUserList(userList);
 	printFlightList(flightList);
-	FLIGHT f = { "arkansas county\n", 't', generateFlightSeating() };
-	flightList = addToFlightList(f, flightList);
-	printFlightList(flightList);
+
+	if (userList != NULL) {
+		free(userList);
+	}
 	if (flightList != NULL) {
 		free(flightList);
 	}

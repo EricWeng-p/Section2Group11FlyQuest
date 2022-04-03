@@ -29,7 +29,7 @@ USER* loadUserListFromFile() {
 	//open file
 	FILE* fp = fopen("userList.txt", "r");
 	//find size of file
-	int size = 1;
+	int size = 4;
 	char ch; //buffer
 	while (!feof(fp)) {
 		ch = fgetc(fp);
@@ -41,42 +41,44 @@ USER* loadUserListFromFile() {
 	setUserListSize(size);
 	//malloc space
 	USER* userArray = (USER*)malloc(sizeof(USER) * size);
-	if (userArray == NULL) {
-		printf("Error allocating memory, exiting program...");
-		exit(1);
-	}
-	//read file line by line into tempArray
-	fseek(fp, 0, SEEK_SET);
-	char buffer[NAMESIZE];
-	char count = 1, userCount = -1;
-	while (fgets(buffer, NAMESIZE, fp)) {
-		//	printf("%s", buffer); //testing
-		userCount++;
-		switch (count) {
-		case 1:
-			strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
-			count++;
-			break;
-		case 2:
-			strncpy((userArray + userCount)->lastName, buffer, NAMESIZE);
-			count++;
-			break;
-		case 3:
-			(userArray + userCount)->cardNumber = atoi(buffer);
-			count++;
-			break;
-		case 4:
-			(userArray + userCount)->cvv = atoi(buffer);
-			count = 1;
-			break;
-		default:
-			count++;
-			break;
+
+	if (userArray != NULL) {
+		fseek(fp, 0, SEEK_SET);
+		char buffer[NAMESIZE];
+		int count = 1, maxCount = 4, userCount = -1;
+		while (fgets(buffer, NAMESIZE, fp)) {
+			//	printf("%s", buffer); //testing
+			
+			switch (count) {
+			case 1:
+				userCount++;
+				strncpy((userArray + userCount)->firstName, buffer, NAMESIZE);
+				count++;
+				break;
+			case 2:
+				strncpy((userArray + userCount)->lastName, buffer, NAMESIZE);
+				count++;
+				break;
+			case 3:
+				(userArray + userCount)->cardNumber = atoi(buffer);
+				count++;
+				break;
+			case 4:
+				(userArray + userCount)->cvv = atoi(buffer);
+				count = 1;
+				break;
+			default:
+				count++;
+				break;
+			}
 		}
 	}
-	//close file
+	else {
+		printf("Memory allocation failed... exiting program");
+		fclose(fp);
+		exit(0);
+	}
 	fclose(fp);
-	//return array ptr
 	return userArray;
 }
 void saveUserListToFile(USER* u) {
@@ -118,19 +120,15 @@ FLIGHT* loadFlightListFromFile() {
 		int count = 1, flightCount = -1;
 		while (fgets(buffer, NAMESIZE, fp)) {
 			//printf("%s", buffer); //testing
+			flightCount++;
 			switch (count) {
 			case 1:
-				flightCount++;
+				
 				strncpy((flightArray + flightCount)->flightDestination, buffer, NAMESIZE);
 				count++;
 				break;
 			case 2:
-				if (atoi(buffer) == 0) {
-					(flightArray + flightCount)->oneWay = true;
-				}
-				else {
-					(flightArray + flightCount)->oneWay = false;
-				}
+				(flightArray + flightCount)->oneWay = buffer;
 				count = 1;
 				break;
 			default:

@@ -37,6 +37,7 @@ double decryptCardNumber(int* num) {
 	return 2;
 }
 //USER set/get
+/*
 double setCardNumber(USER u, double d) {
 	return u.cardNumber = d;
 }
@@ -61,6 +62,8 @@ void setCvv(USER u, int cvv) {
 int getCvv(USER u) {
 	return u.cvv;
 }
+*/
+
 //USER
 //generate user manually
 USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv) {
