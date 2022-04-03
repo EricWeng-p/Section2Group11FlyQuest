@@ -104,7 +104,7 @@ FLIGHT* loadFlightListFromFile() {
 	//open file
 	FILE* fp = fopen("flightList.txt", "r");
 	//find size of file
-	int size = 2;
+	int size = 1;
 	char ch; //buffer
 	while (!feof(fp)) {
 		ch = fgetc(fp);
