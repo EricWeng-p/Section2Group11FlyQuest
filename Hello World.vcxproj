@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dataProcessing.c" />
+    <ClCompile Include="interface.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="saveLoad.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataProcessing.h" />
+    <ClInclude Include="interface.h" />
     <ClInclude Include="saveLoad.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -24,12 +24,18 @@
     <ClCompile Include="saveLoad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="interface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataProcessing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="saveLoad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
