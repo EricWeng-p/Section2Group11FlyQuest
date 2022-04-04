@@ -1,5 +1,9 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 #include"dataProcessing.h"
 #include"saveLoad.h"
+#include"interface.h"
 int main(int argc, char* argv[])
 {
 	if (argc == 2)
