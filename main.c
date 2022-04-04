@@ -1,7 +1,17 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
 #include"dataProcessing.h"
 #include"saveLoad.h"
+#include"interface.h"
+
 int main(int argc, char* argv[])
 {
+
+	welcome();
+	checkFor();
+	printOption();
 	if (argc == 2)
 		printf("argument given: \n");
 	else if (argc > 2)
