@@ -60,7 +60,7 @@ USER* loadUserListFromFile() {
 				count++;
 				break;
 			case 3:
-				(userArray + userCount)->cardNumber = atoi(buffer);
+				strncpy((userArray + userCount)->cardNumber, buffer, NAMESIZE);
 				count++;
 				break;
 			case 4:
@@ -72,20 +72,20 @@ USER* loadUserListFromFile() {
 				break;
 			}
 		}
+		fclose(fp);
+		return userArray;
 	}
 	else {
 		printf("Memory allocation failed... exiting program");
 		fclose(fp);
 		exit(0);
 	}
-	fclose(fp);
-	return userArray;
 }
 void saveUserListToFile(USER* u) {
 	FILE* fp = fopen("userList.txt", "w");
 	printf("\nUser List size: %d\n", getUserListSize());
 	for (int i = 0; i < getUserListSize(); i++) {
-		fprintf(fp, "%s%s%f\n%d\n", (u + i)->firstName, (u + i)->lastName, (u + i)->cardNumber, (u + i)->cvv);
+		fprintf(fp, "%s%s%s%d\n", (u + i)->firstName, (u + i)->lastName, (u + i)->cardNumber, (u + i)->cvv);
 	}
 	fclose(fp);
 }
@@ -94,7 +94,7 @@ void printUserList(USER* u) {
 	int count = 0;
 	printf("\nUser List size: %d\n", getUserListSize());
 	for (int i = 0; i < getUserListSize(); i++) {
-		printf("%s%s%f\n%d\n", (u + count)->firstName, (u + count)->lastName, (u + count)->cardNumber, (u + count)->cvv); //%.0f causes program timeout
+		printf("%s%s%s%d\n", (u + count)->firstName, (u + count)->lastName, (u + count)->cardNumber, (u + count)->cvv); //%.0f causes program timeout
 		count++;
 	}
 }
