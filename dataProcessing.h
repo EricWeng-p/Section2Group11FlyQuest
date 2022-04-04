@@ -1,6 +1,6 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
-#define CARDNUMSIZE 9
+#define CARDNUMSIZE 11
 #define FLIGHTROWS 4
 #define FLIGHTCOLUMNS 15
 #define NAMESIZE 25
@@ -15,7 +15,7 @@
 typedef struct USER {
 	char firstName[NAMESIZE];
 	char lastName[NAMESIZE];
-	double cardNumber;
+	char cardNumber[CARDNUMSIZE];
 	int cvv;
 }USER;
 

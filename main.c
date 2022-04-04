@@ -23,8 +23,9 @@ int main(int argc, char* argv[])
 
 	//saveFlightListToFile(flightList); //working
 
-	USER u = {"Eric\n", "Weng\n", 334551231, 586};
+	USER u = {"Eric\n", "Weng\n", "334551231\n", 586};
 	userList = addToUserList(u, userList); //userListsize is changing here
+	printUserList(userList);
 	saveUserListToFile(userList);
 
 	if (userList != NULL) {

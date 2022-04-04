@@ -65,14 +65,6 @@ int getCvv(USER u) {
 */
 
 //USER
-//generate user manually
-USER generateUser(char* firstName, char* lastName, double cardNumber, int cvv) {
-	USER u = { firstName, lastName, cardNumber, cvv };
-	return u;
-}
-USER generateRandomUser() {
-	//use text file to store list of names to choose from at random //testingGOAL?
-}
 USER* removeUser(USER u) { //realloc list ptr to be 1 user smaller
 
 	//remove from user list(save/load)

@@ -22,14 +22,14 @@ void decrementUserListSize() {
 	setUserListSize(getUserListSize() - 1);
 }
 void incrementUserListSize() {
-	setUserListSize(getUserListSize() - 1);
+	setUserListSize(getUserListSize() + 1);
 }
 //user list functions
 USER* loadUserListFromFile() {
 	//open file
 	FILE* fp = fopen("userList.txt", "r");
 	//find size of file
-	int size = 0;
+	int size = 1;
 	char ch; //buffer
 	while (!feof(fp)) {
 		ch = fgetc(fp);
@@ -37,7 +37,12 @@ USER* loadUserListFromFile() {
 			size++;
 		}
 	}
+	//test
+	if (size % 4 != 0) {
+		printf("size: %d", size);
+	}
 	size = size / 4;
+	
 	setUserListSize(size);
 	//malloc space
 	USER* userArray = (USER*)malloc(sizeof(USER) * size);
@@ -48,7 +53,7 @@ USER* loadUserListFromFile() {
 		int count = 1, maxCount = 4, userCount = -1;
 		while (fgets(buffer, NAMESIZE, fp)) {
 			//	printf("%s", buffer); //testing
-			
+
 			switch (count) {
 			case 1:
 				userCount++;
@@ -60,7 +65,7 @@ USER* loadUserListFromFile() {
 				count++;
 				break;
 			case 3:
-				(userArray + userCount)->cardNumber = atoi(buffer);
+				strncpy((userArray + userCount)->cardNumber, buffer, NAMESIZE);
 				count++;
 				break;
 			case 4:
@@ -72,20 +77,20 @@ USER* loadUserListFromFile() {
 				break;
 			}
 		}
+		fclose(fp);
+		return userArray;
 	}
 	else {
 		printf("Memory allocation failed... exiting program");
 		fclose(fp);
 		exit(0);
 	}
-	fclose(fp);
-	return userArray;
 }
 void saveUserListToFile(USER* u) {
 	FILE* fp = fopen("userList.txt", "w");
 	printf("\nUser List size: %d\n", getUserListSize());
 	for (int i = 0; i < getUserListSize(); i++) {
-		fprintf(fp, "%s%s%f\n%d\n", (u + i)->firstName, (u + i)->lastName, (u + i)->cardNumber, (u + i)->cvv);
+		fprintf(fp, "%s%s%s%d\n", (u + i)->firstName, (u + i)->lastName, (u + i)->cardNumber, (u + i)->cvv);
 	}
 	fclose(fp);
 }
@@ -94,7 +99,7 @@ void printUserList(USER* u) {
 	int count = 0;
 	printf("\nUser List size: %d\n", getUserListSize());
 	for (int i = 0; i < getUserListSize(); i++) {
-		printf("%s%s%f\n%d\n", (u + count)->firstName, (u + count)->lastName, (u + count)->cardNumber, (u + count)->cvv); //%.0f causes program timeout
+		printf("%s%s%s%d\n", (u + count)->firstName, (u + count)->lastName, (u + count)->cardNumber, (u + count)->cvv); //%.0f causes program timeout
 		count++;
 	}
 }
@@ -104,7 +109,7 @@ FLIGHT* loadFlightListFromFile() {
 	//open file
 	FILE* fp = fopen("flightList.txt", "r");
 	//find size of file
-	int size = 1;
+	int size = 0;
 	char ch; //buffer
 	while (!feof(fp)) {
 		ch = fgetc(fp);
@@ -122,7 +127,7 @@ FLIGHT* loadFlightListFromFile() {
 		int count = 1, flightCount = -1;
 		while (fgets(buffer, NAMESIZE, fp)) {
 			//printf("%s", buffer); //testing
-			
+
 			switch (count) {
 			case 1:
 				flightCount++;
@@ -165,7 +170,7 @@ void printFlightList(FLIGHT* f) {
 }
 
 FLIGHT* addToFlightList(FLIGHT f, FLIGHT* flightPtr) {
-	if (getFlightListSize() == 0) { 
+	if (getFlightListSize() == 0) {
 		setFlightListSize(1);
 	}
 	else {
@@ -177,17 +182,24 @@ FLIGHT* addToFlightList(FLIGHT f, FLIGHT* flightPtr) {
 	return newFlt;
 }
 
-USER* addToUserList(USER u, USER* listPtr) { 
+USER* addToUserList(USER u, USER* userPtr) {
 	if (getUserListSize() == 0) {
 		setUserListSize(1);
 	}
 	else {
 		incrementUserListSize();
 	}
-	USER* newUsr = (USER*)realloc(listPtr, (sizeof(USER) * getUserListSize()));
-	strncpy((listPtr + (getUserListSize() - 1))->firstName, u.firstName, NAMESIZE);
-	strncpy((listPtr + (getUserListSize() - 1))->lastName, u.lastName, NAMESIZE);
-	(listPtr + (getUserListSize() - 1))->cardNumber = u.cardNumber;
-	(listPtr + (getUserListSize() - 1))->cvv = u.cvv;
-	return newUsr;
+	USER* newUsr;
+	if (newUsr = (USER*)realloc(userPtr, (sizeof(USER) * getUserListSize())) != NULL) {
+			strncpy((newUsr + getUserListSize())->firstName, u.firstName, NAMESIZE);
+			strncpy((newUsr + getUserListSize())->lastName, u.lastName, NAMESIZE);
+			strncpy((newUsr + getUserListSize())->cardNumber, u.cardNumber, NAMESIZE);
+			(newUsr + (getUserListSize() - 1))->cvv = u.cvv;
+			return newUsr;
+	}
+	else {
+		printf("Error reallocating userList. returning userList...");
+		return userPtr;
+	}
+	
 }
